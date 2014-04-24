@@ -1,12 +1,16 @@
 package spssoftware.dao;
 
 import com.mongodb.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
 public class BlogsDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BlogsDao.class);
 
     public List<String> getBlogs() {
         List<String> blogs = new LinkedList<String>();
@@ -26,7 +30,7 @@ public class BlogsDao {
             }
             return blogs;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Failed.", e);
             throw new RuntimeException(e);
         }
     }
