@@ -1,11 +1,28 @@
 <configuration scan="true">
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="file.appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/logs/spssoftware.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/spssoftware.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} %-6X{requestId} - %-5level - %msg%n</pattern>
+            <pattern>%d %-5p %-6X{requestId} %c - %m%xEx%n</pattern>
         </encoder>
     </appender>
 
-    <root level="STDOUT">
-        <appender-ref ref="appender"/>
+    <appender name="console.appender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %-5p %-6X{requestId} %c - %m%xEx%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="spssofftware" level="info" additivity="false">
+        <appender-ref ref="file.appender"/>
+        <appender-ref ref="console.appender"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="file.appender"/>
+        <appender-ref ref="console.appender"/>
     </root>
 </configuration>
