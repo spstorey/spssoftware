@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Root {
 
     public String root() {
-        return "Hello";
+        return "Hello 1";
     }
 }
