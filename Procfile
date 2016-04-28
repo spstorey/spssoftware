@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/spssoftware.jar
+web: java -Dserver.port=$PORT -jar  target/spssoftware.jar
